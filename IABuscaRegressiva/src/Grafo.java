@@ -24,10 +24,10 @@ public class Grafo {
 		
 	}
 	
-	public void addAresta(int v, int w, int custo) {
+	public void addAresta(int v, int w) {
 		
-		adjacents[v][w] = custo;
-		adjacents[w][v] = custo;
+		adjacents[v][w]=1;
+		adjacents[w][v]=1;
 		
 		qtdArestas++;
 		
