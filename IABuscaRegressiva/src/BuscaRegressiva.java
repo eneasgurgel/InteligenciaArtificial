@@ -25,43 +25,31 @@ public class BuscaRegressiva {
 	private Stack<Integer> execute(Grafo grafo, int inicial, int objetivo) {
 		while(!LNE.isEmpty()) {
 			if (EC == objetivo) {
-				System.out.println("Primeiro");
-				System.out.println(LE);
-				System.out.println("--");
-				System.out.println(LNE);
-				System.out.println("--");
-				System.out.println(BSS);
-				System.out.println("--");
-				System.out.println(EC);
 				return LE;
 			}
-			System.out.println("a");
-			System.out.println(grafo.getAdjacentes(EC));
 			List <Integer> a = grafo.getAdjacentes(EC);
 			a.remove(EC);
 			a.remove(antecessor);
-			System.out.println("depois do EC: "+grafo.getAdjacentes(EC));
 			if (a.isEmpty()) {
-				System.out.println("s");
-				System.out.println(BSS);
 				while((!LE.isEmpty()) && (EC == LE.peek())) {
 					BSS.push(EC);
 					LE.pop();
 					LNE.pop();
-					EC = LNE.peek();
-					
+					if (!LNE.isEmpty()) {
+						EC = LNE.peek();
+					}
+					if(!LE.isEmpty()) {
+						antecessor = LE.elementAt(LE.size()-1);
+					}	
 				}
 				
 				LE.push(EC);
 			}
 			else {
 				List<Integer> filhos = new ArrayList<Integer>();
-				for(int filho : grafo.getAdjacentes(EC)) {
+				for(int filho : a) {
 					if ((!BSS.contains(filho)) && (!LE.contains(filho)) && (!LNE.contains(filho))){
-						
 						filhos.add(filho);
-						System.out.println("b");
-						System.out.println(LNE);
 					}
 				}
 				for(int i = filhos.size() -1 ; i >= 0 ; i--) {
@@ -84,6 +72,6 @@ public class BuscaRegressiva {
 				result += alfabeto[n] + '-';
 			}
 		}
-		return result;
+		return result.replaceFirst(".$", "");
 	}
 }
