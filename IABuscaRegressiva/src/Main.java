@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -25,20 +26,24 @@ public class Main {
 		grafo.addAresta(5, 9);
 
 		int origem = 0;
-		int destino = 6;
-
-		System.out.println("Caminho de A até G:");
-		BuscaRegressiva busca1 = new BuscaRegressiva(grafo, origem, destino);
-
-		destino = 10;
+		int destino = 0;
+		String escolha = "s";
+		Scanner scanDestino = new Scanner(System.in);
+		Scanner scanEscolha = new Scanner(System.in);
 		
-		System.out.println("Caminho de A até K:");
-		BuscaRegressiva busca2 = new BuscaRegressiva(grafo, origem, destino);
 		
-		grafo.addAresta(5, 10);
-
-		System.out.println("Caminho de A até K:");
-		busca2 = new BuscaRegressiva(grafo, origem, destino);
+		while(escolha.toLowerCase().equals("s")) {
+			System.out.println("Digite o valor de destino:");
+			destino = scanDestino.nextInt();
+			if(destino < grafo.qtdVertices) {
+				BuscaRegressiva busca1 = new BuscaRegressiva(grafo, origem, destino);
+				System.out.println("Deseja repetir?:");
+				escolha = scanEscolha.next();	
+			}
+			else {
+				System.err.println("Destino tem que ser menor do 12");
+			}
+		}
 	}
 
 }

@@ -19,11 +19,12 @@ public class BuscaRegressiva {
 		
 		resposta = execute(grafo, inicial, objetivo);
 		
-		System.out.println(traduzir(resposta));
+		System.out.println(traduzir(resposta,inicial, objetivo));
 	}
 	
 	private Stack<Integer> execute(Grafo grafo, int inicial, int objetivo) {
 		while(!LNE.isEmpty()) {
+			imprimeEstruturas();
 			if (EC == objetivo) {
 				return LE;
 			}
@@ -63,15 +64,40 @@ public class BuscaRegressiva {
 		return null;
 	}
 	
-	private String traduzir(Stack<Integer> caminho) {
-		String result = "Não tem caminho!";
+	private String traduzir(Stack<Integer> caminho, int inicial,int destino) {
+		String result = "Não tem caminho! ";
+		String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","M"};
 		if (caminho != null) {
 			result = "";
-			String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","M"};
+			
 			for (int n : caminho) {
 				result += alfabeto[n] + '-';
 			}
 		}
-		return result.replaceFirst(".$", "");
+		return "Caminho de " + alfabeto[inicial] + " para " + alfabeto[destino]+": "+result.replaceFirst(".$", "");
+	}
+	private void imprimeEstruturas() {
+		String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
+		
+		String result = "BSS: ";
+		for (int n : this.BSS) {
+			result += alfabeto[n] + '-';
+			
+		}
+		System.out.println(result.replaceFirst(".$", ""));
+		String resultLNE = "LNE:";
+		for (int n : this.LNE) {
+			resultLNE += alfabeto[n] + '-';
+		}
+		System.out.println(resultLNE.replaceFirst(".$", ""));
+		String resultLE = "LE:";
+		for (int n : this.LE) {
+			resultLE += alfabeto[n] + '-';
+		}
+		System.out.println(resultLE.replaceFirst(".$", ""));
+		System.out.println("EC: "+alfabeto[this.EC]);
+		System.out.println("-----------------------------");
+
+
 	}
 }
