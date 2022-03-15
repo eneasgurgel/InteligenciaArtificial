@@ -64,10 +64,10 @@ public class BuscaRegressiva {
 	}
 	
 	private String traduzir(Stack<Integer> caminho) {
-		String result = "Não tem caminho!";
+		String result = "NÃ£o tem caminho!";
 		if (caminho != null) {
 			result = "";
-			String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J"};
+			String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","M"};
 			for (int n : caminho) {
 				result += alfabeto[n] + '-';
 			}

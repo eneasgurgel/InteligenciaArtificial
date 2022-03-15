@@ -3,7 +3,6 @@ import java.util.*;
 public class Grafo {
 	public static final int INFINITY = Integer.MAX_VALUE / 2;
 	protected int[][] adjacents;
-	protected int qtdArestas;
 	protected int qtdVertices;
 	
 	public Grafo(int qtdVertices) {
@@ -28,24 +27,9 @@ public class Grafo {
 		
 		adjacents[v][w]=1;
 		adjacents[w][v]=1;
-		
-		qtdArestas++;
-		
+				
 	}
-	
-	public List<Integer> getPredecessors(int v) {
-		
-		List<Integer> result = new ArrayList<Integer>();
-		
-		for (int i = 0; i < adjacents.length; i++) {
-			if (adjacents[v][i] != INFINITY) {
-				result.add(i);
-			}
-		}
-	
-		return result;
-	}
-	
+
 	public List<Integer> getAdjacentes(int v) {
 	
 		List<Integer> result = new ArrayList<Integer>();
@@ -59,28 +43,5 @@ public class Grafo {
 		return result;
 		
 	}
-	
-	public int getCusto(int v, int w) {
-		return adjacents[v][w];
-	}
-
-	public int getQtdArestas() {
-		return qtdArestas;
-	}
-
-	public int getQtdVertices() {
-		return qtdVertices;
-	}
-	
-	public List<Integer> getVertices() {
-		List<Integer> result = new ArrayList<Integer>();
-		for (int i = 0; i < getQtdVertices(); i++) {
-			result.add(i);
-		}
-
-		return result;
-	}
-
-	
 	
 }
