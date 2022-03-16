@@ -1,7 +1,6 @@
 import java.util.*;
 
 public class Grafo {
-	public static final int INFINITY = Integer.MAX_VALUE / 2;
 	protected int[][] adjacents;
 	protected int qtdVertices;
 	
@@ -15,8 +14,8 @@ public class Grafo {
 				if (i == j) {
 					adjacents[i][j] = 0; 
 				} else {
-					adjacents[i][j] = INFINITY; 
-					adjacents[j][i] = INFINITY; 
+					adjacents[i][j] = 0; 
+					adjacents[j][i] = 0; 
 				}
 			}
 		}
@@ -35,7 +34,7 @@ public class Grafo {
 		List<Integer> result = new ArrayList<Integer>();
 		
 		for (int i = 0; i < adjacents.length; i++) {
-			if (adjacents[v][i] != INFINITY) {
+			if (adjacents[v][i] != 0) {
 				result.add(i);
 			}
 		}

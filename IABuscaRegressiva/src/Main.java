@@ -1,4 +1,4 @@
-import java.io.IOException;
+//import java.io.IOException;
 import java.util.*;
 
 public class Main {
@@ -8,7 +8,7 @@ public class Main {
 		Grafo grafo = new Grafo(12);
 
 		// [0,1,2,3,4,5,6,7,8,9,10,11]
-		// [A,B,C,D,E,F,G,H,I,J,K]
+		// ["A","B","C","D","E","F","G","H","I","J","K"]
 
 		grafo.addAresta(0, 1);
 		grafo.addAresta(0, 2);
@@ -37,13 +37,18 @@ public class Main {
 			destino = scanDestino.nextInt();
 			if(destino < grafo.qtdVertices) {
 				BuscaRegressiva busca1 = new BuscaRegressiva(grafo, origem, destino);
-				System.out.println("Deseja repetir?:");
-				escolha = scanEscolha.next();	
+				System.out.println("Deseja repetir?(S):");
+				escolha = scanEscolha.next();
+				for (int i = 0; i < 50; ++i) System.out.println();
 			}
 			else {
-				System.err.println("Destino tem que ser menor do 12");
+				System.err.println("Destino tem que ser menor do que " + grafo.qtdVertices);
 			}
 		}
+		scanDestino.close();
+		scanEscolha.close();
+		
+		System.out.println("Fim!");
 	}
 
 }
