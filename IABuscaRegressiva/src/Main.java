@@ -26,25 +26,21 @@ public class Main {
 		grafo.addAresta(5, 9);
 
 		int origem = 0;
-		int destino = 0;
+		String destino;
 		String escolha = "s";
 		Scanner scanDestino = new Scanner(System.in);
 		Scanner scanEscolha = new Scanner(System.in);
 		
 		
 		while(escolha.toLowerCase().equals("s")) {
-			System.out.println("Digite o valor de destino:");
-			destino = scanDestino.nextInt();
-			if(destino < grafo.qtdVertices) {
-				BuscaRegressiva busca1 = new BuscaRegressiva(grafo, origem, destino);
-				System.out.println("Deseja repetir?(S):");
-				escolha = scanEscolha.next();
-				for (int i = 0; i < 50; ++i) System.out.println();
-			}
-			else {
-				System.err.println("Destino tem que ser menor do que " + grafo.qtdVertices);
-			}
+			System.out.println("Digite o destino:");
+			destino = scanDestino.next();
+			BuscaRegressiva busca1 = new BuscaRegressiva(grafo, origem, destino.toUpperCase());
+			System.out.println("Deseja repetir?(S):");
+			escolha = scanEscolha.next();
+			for (int i = 0; i < 50; ++i) System.out.println();	
 		}
+		
 		scanDestino.close();
 		scanEscolha.close();
 		

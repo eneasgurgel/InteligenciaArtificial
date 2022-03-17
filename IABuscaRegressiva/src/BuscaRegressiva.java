@@ -1,6 +1,7 @@
 import java.util.*;
 
 public class BuscaRegressiva {
+	private String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
 	private Stack<Integer> LE;
 	private Stack<Integer> LNE;
 	private Stack<Integer> BSS;
@@ -9,7 +10,8 @@ public class BuscaRegressiva {
 	private Stack<Integer> resposta;
 	
 	
-	public BuscaRegressiva(Grafo grafo, int inicial, int objetivo) {
+	public BuscaRegressiva(Grafo grafo, int inicial, String objetivo) {
+		
 		this.LE = new Stack<Integer>();
 		this.LNE = new Stack<Integer>();
 		this.BSS = new Stack<Integer>();
@@ -17,9 +19,17 @@ public class BuscaRegressiva {
 		this.LE.push(inicial);
 		this.LNE.push(inicial);
 		
-		resposta = execute(grafo, inicial, objetivo);
+		int IndexObjetivo = Arrays.asList(alfabeto).indexOf(objetivo);
 		
-		System.out.println(traduzir(resposta,inicial, objetivo));
+		if(IndexObjetivo >= grafo.qtdVertices) {
+			System.err.println("Destino tem que estar dentro do Grafo!");
+		}else {
+		
+			resposta = execute(grafo, inicial, IndexObjetivo);
+		
+			System.out.println(traduzir(resposta,inicial, IndexObjetivo));
+		
+		}
 	}
 	
 	private Stack<Integer> execute(Grafo grafo, int inicial, int objetivo) {
@@ -44,7 +54,7 @@ public class BuscaRegressiva {
 					}	
 				}
 				
-				LE.push(EC);
+				LE.push(EC);	
 			}
 			else {
 				List<Integer> filhos = new ArrayList<Integer>();
@@ -66,7 +76,6 @@ public class BuscaRegressiva {
 	
 	private String traduzir(Stack<Integer> caminho, int inicial,int destino) {
 		String result = "Não tem caminho! ";
-		String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","M"};
 		if (caminho != null) {
 			result = "";
 			
@@ -77,24 +86,25 @@ public class BuscaRegressiva {
 		return "Caminho de " + alfabeto[inicial] + " para " + alfabeto[destino]+": "+result.replaceFirst(".$", "");
 	}
 	private void imprimeEstruturas() {
-		String[] alfabeto = {"A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z"};
-		
-		String result = "BSS: ";
+		String resultBSS = "BSS: ";
 		for (int n : this.BSS) {
-			result += alfabeto[n] + '-';
+			resultBSS += alfabeto[n] + '-';
 			
 		}
-		System.out.println(result.replaceFirst(".$", ""));
+		System.out.println(resultBSS.replaceFirst(".$", ""));
+		
 		String resultLNE = "LNE:";
 		for (int n : this.LNE) {
 			resultLNE += alfabeto[n] + '-';
 		}
 		System.out.println(resultLNE.replaceFirst(".$", ""));
+		
 		String resultLE = "LE:";
 		for (int n : this.LE) {
 			resultLE += alfabeto[n] + '-';
 		}
 		System.out.println(resultLE.replaceFirst(".$", ""));
+		
 		System.out.println("EC: "+alfabeto[this.EC]);
 		System.out.println("-----------------------------");
 
